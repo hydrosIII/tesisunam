@@ -1,11 +1,11 @@
-%% esta es una macro en latex para la tesis de la UNAM, expecializada en las humanides y las ciencias sociales
-%%% esta gecha para el formato tesis 23cmmx 17 cm aunque se puede cambiar facilmente a tamaño carta.
+%% Esta es una macro en latex para la tesis de la UNAM, expecializada en las humanidades y las ciencias sociales
+%%% esta hecha para el formato tesis 23cmmx 17 cm aunque se puede cambiar facilmente a tamaño carta.
 %% esta basada en la clase memoir, se puede consultar la documentación de esta clase en la CTAN.
 %% la siguiente macro está hecha para ser compilada con xelatex.
 
 
-%%doble cara, esto se puede cambiar facilmente, solo agrear onwside
-%% los capítulo abres siempre por la derecha.
+%%doble cara, esto se puede cambiar facilmente, solo agregar o oneside y borrar twoside
+%% los capítulos abren siempre por la derecha.
 %% tamaño de letra 12
 %% si se quiere tamaño  carta ponner letter en las opciones de abajo y quitar la definición de tamaño un poco más abajo.
 \documentclass[12pt,spanish,twoside,openright]{memoir}
@@ -72,7 +72,7 @@
 \usepackage[font=footnotesize,labelfont=bf]{caption}
 
 %% headers
-%%%% para que no salgan en mayúscula las headers, si no ocupan mucho espacio, consultar el manual de memoir
+%%%% para que no salgan en mayúscula las headers, si no, ocupan mucho espacio, consultar el manual de memoir
 \copypagestyle{memoirStylePages}{headings}
 \nouppercaseheads
 
@@ -101,10 +101,10 @@
 \AtBeginEnvironment{tabular}{\small}%%%letra pequeña en tablas
 
 
-\usepackage{polyglossia} %% manejo de - en las palabras al cortar linea y otras características del idioma espñaol, define también otros idiomas
+\usepackage{polyglossia} %% manejo de - en las palabras al cortar linea y otras características del idioma español, define también otros idiomas
 \setdefaultlanguage{spanish}
 
-%%% esto es para que el primer parrafo después de un título no aparexca con sangría, aunque eso es sólo en la traición inglesa,
+%%% esto es para que el primer parrafo después de un título no aparezca con sangría, aunque eso es sólo en la traición inglesa,
 %% en la francesa siempre aparece.
 %% se puede descomentar según el gusto.
 %\PolyglossiaSetup{spanish
@@ -119,8 +119,8 @@
 %Se puede cambiar de draft a disable una vez q el texto quede, y asi desaparecen las notas en le pdf.
 
 
-%% el paquete hyperref para mas refencias en el texto, además los ULR y referencias y notas al pie se vuelven "clicables".
-%%% Tambien genera los metadatos del PDF, importante para los gestores de bibliografía como zotero o endnote o Mendeley cuando indexen tu tesis, 
+%% el paquete hyperref para mas refencias en el texto, además los URL y referencias y notas al pie se vuelven "clicables".
+%%% Tambien genera los metadatos del PDF, importante para los gestores de bibliografía como Zotero, Endnote o Mendeley cuando indexen tu tesis. 
 \usepackage[xetex,
             pdfauthor={Autor},
             pdftitle={Título},
@@ -164,7 +164,7 @@
 \clubpenalty=0
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Citas!!!, estas citas estpán definidas según el estilo Chicago, segun lo que requieren la mayoŕia de las facultades 
-%%%% de humanides y ciencias sociales. usa biblatex y un montón de pargámetros para que salgan como deben quedar.
+%%%% de humanides y ciencias sociales. usa biblatex y un montón de parámetros para que salgan como deben quedar.
 
 
 %%%, ésta es la página, todo lo de abajo hace q los ibidems en las citas, no se generen si es la primera cita en la página, http://tex.%%%stackexchange.com/questions/58009/biblatex-tricks-with-repeated-citations-in-footnotes
@@ -221,14 +221,14 @@
 %% reajustar tablas y cosas q se salgan de los margenes
 \usepackage{adjustbox}
 
-
-
 % Para las letras capitales iniciales, se pueden poner al principio de cada capítulo por ejemplo.
 \usepackage{type1cm}
 \usepackage{lettrine}
 %%% para que la siguiente letra no se ponga en mayúscula pequeña, eso es opcional
 \renewcommand{\LettrineTextFont}{\rmfamily}
 
+
+%% empieza el documento
 
 \begin{document}
 
@@ -322,6 +322,8 @@
 %% la lista de cuadros
 \listoffigures{}
 
+%% a artir de aquí ya todo saldrá con números arábigos. 
+\mainmatter
 
 \chapter*{primer capítulo}}
 
@@ -343,7 +345,7 @@
 
 \end{appendices}
 
-%% cosas de atras, generalmente no son necesarias en la tesis.
+%% cosas de atrás, generalmente no son necesarias en la tesis.
 \backmatter
 
 \end{document}
