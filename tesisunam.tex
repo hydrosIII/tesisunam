@@ -1,18 +1,20 @@
 %% esta es una macro en latex para la tesis de la UNAM, expecializada en las humanides y las ciencias sociales
-%%% ahora para el formato esis 23cmmx 17 cm aunque se puede cambiar facilmente a tamaño carta.
-%% esta basada en la clase mamoir, se puede consultar la documentación de esta clase en la CTAN.
-%% la siguiente macro estpá hecha para ser compilada con xelatex.
+%%% esta gecha para el formato tesis 23cmmx 17 cm aunque se puede cambiar facilmente a tamaño carta.
+%% esta basada en la clase memoir, se puede consultar la documentación de esta clase en la CTAN.
+%% la siguiente macro está hecha para ser compilada con xelatex.
 
 
 %%doble cara, esto se puede cambiar facilmente, solo agrear onwside
 %% los capítulo abres siempre por la derecha.
 %% tamaño de letra 12
-
+%% si se quiere tamaño  carta ponner letter en las opciones de abajo y quitar la definición de tamaño un poco más abajo.
 \documentclass[12pt,spanish,twoside,openright]{memoir}
 
 %% 1.5 espacios
 \OnehalfSpacing
 \makeatletter
+
+%% borrar esto si se quiere tamaño carta.
 
 \setstocksize{230mm}{170mm}
 \settrimmedsize{230mm}{170mm}
@@ -21,16 +23,18 @@
 \usepackage{fontspec}
 
 %% el paquete geometry se usa para definir los margenes y para cambiar de margenes en la portada, este provoca algunos conflictos con memoir, sitines problemas puedes consultar el manul de memoir.
+%% esto está comentado por conflictos
 %\usepackage[tmargin=2cm,bmargin=3cm,lmargin=2cm,rmargin=2cm,head=16pt,twoside,asymmetric,hmarginratio=2:3]{geometry}
 \usepackage{geometry}
 
-
+%% no se por que está aquí
 \setcounter{tocdepth}{3}
 
 
 \usepackage{color}
 \usepackage{array}
 \usepackage{verbatim}
+
 %% tablas que atravisen páginas, tablas largas
 \usepackage{longtable}
 
@@ -136,7 +140,7 @@
 %%%%\usepackage[multiple]{footmisc}
 
 
-%% para LyX
+%% para LyX, si se inserta texto que viene de Lyx.
 \providecommand{\tabularnewline}{\\}
 %%%%%
 
