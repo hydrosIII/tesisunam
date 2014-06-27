@@ -1,0 +1,346 @@
+%% esta es una macro en latex para la tesis de la UNAM, expecializada en las humanides y las ciencias sociales
+%%% ahora para el formato esis 23cmmx 17 cm aunque se puede cambiar facilmente a tamaño carta.
+%% esta basada en la clase mamoir, se puede consultar la documentación de esta clase en la CTAN.
+%% la siguiente macro estpá hecha para ser compilada con xelatex.
+
+
+%%doble cara, esto se puede cambiar facilmente, solo agrear onwside
+%% los capítulo abres siempre por la derecha.
+%% tamaño de letra 12
+
+\documentclass[12pt,spanish,twoside,openright]{memoir}
+
+%% 1.5 espacios
+\OnehalfSpacing
+\makeatletter
+
+\setstocksize{230mm}{170mm}
+\settrimmedsize{230mm}{170mm}
+\checkandfixthelayout
+
+\usepackage{fontspec}
+
+%% el paquete geometry se usa para definir los margenes y para cambiar de margenes en la portada, este provoca algunos conflictos con memoir, sitines problemas puedes consultar el manul de memoir.
+%\usepackage[tmargin=2cm,bmargin=3cm,lmargin=2cm,rmargin=2cm,head=16pt,twoside,asymmetric,hmarginratio=2:3]{geometry}
+\usepackage{geometry}
+
+
+\setcounter{tocdepth}{3}
+
+
+\usepackage{color}
+\usepackage{array}
+\usepackage{verbatim}
+%% tablas que atravisen páginas, tablas largas
+\usepackage{longtable}
+
+%% para rotar figuras y tablas provee los entornos sidewaysfigure y sidewaystable
+\usepackage{rotating}
+
+%%% para las referencias cruzadas, que se actualizan automaticamente por ejemplo. Veáse capítulo 1 en pag x.
+\usepackage{varioref} 
+
+%% para las flotnates usadas en figuras y tablas
+\usepackage{float}
+%%\usepackage{rotfloat}
+
+%% para multicolumna 
+\usepackage{multirow}
+
+%% manejo de figuras
+\usepackage{graphicx}
+
+%% una correcion para usar el comando setspace en memoir
+\DisemulatePackage{setspace}
+\usepackage{setspace}
+
+
+%%% para parchar otras paquetes de latex como las citas y los cuadros pequeños
+\usepackage{etoolbox}
+
+
+%%% citas textuales en un solo espacio, centradas y con letra pequeña, define el entorno {quote}, 
+\AtBeginEnvironment{quote}{\small\singlespacing}
+
+%% esto es para las figuras y tablas que aparezca su pie en letra pequeña por default
+%% si se desea que en una figura específica se agrande el tipo de letra se puede usar \captionsetup {font=large} o algún otro tamaño para ese pie solamente
+
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+
+%% headers
+%%%% para que no salgan en mayúscula las headers, si no ocupan mucho espacio, consultar el manual de memoir
+\copypagestyle{memoirStylePages}{headings}
+\nouppercaseheads
+
+%%% la línea que separa las headers.
+\makeheadrule{memoirStylePages}{\textwidth}{\normalrulethickness}
+
+%%% para que las notas al pie no se vayan a otra hoja, http://tex.stackexchange.com/questions/32208/footnote-runs-onto-second-page, este valor se puede cambiar
+\interfootnotelinepenalty=4000
+\makeatother
+
+
+%% tablas
+%%%% para que todas las  tablas estén centradas
+\let\originaltable\table
+\let\endoriginaltable\endtable
+\renewenvironment{table}[1][ht]{%
+  \originaltable[#1]
+  \centering}%
+  {\endoriginaltable}
+
+%%% tablas son un 1 espacio y no 1.5, requiere de etoolbox
+\AtBeginEnvironment{table}{\singlespacing}% Single spacing in table environment
+\AtBeginEnvironment{longtable}{\footnotesize\singlespacing}% Single spacing in table environment
+
+%% tablas en fuente pequeña
+\AtBeginEnvironment{tabular}{\small}%%%letra pequeña en tablas
+
+
+\usepackage{polyglossia} %% manejo de - en las palabras al cortar linea y otras características del idioma espñaol, define también otros idiomas
+\setdefaultlanguage{spanish}
+
+%%% esto es para que el primer parrafo después de un título no aparexca con sangría, aunque eso es sólo en la traición inglesa,
+%% en la francesa siempre aparece.
+%% se puede descomentar según el gusto.
+%\PolyglossiaSetup{spanish
+%%ñ{-.ñ }{indentfirst=false}
+
+%Comentarios para el asesor o revisores, aparecen en pequeñas cajas naranjas en el pdf.
+%%% se usa de la siguiente manera
+%%%\todo[inline]{una nota para mi asesor}
+
+\usepackage{xcolor}
+\usepackage[draft]{todonotes}
+%Se puede cambiar de draft a disable una vez q el texto quede, y asi desaparecen las notas en le pdf.
+
+
+%% el paquete hyperref para mas refencias en el texto, además los ULR y referencias y notas al pie se vuelven "clicables".
+%%% Tambien genera los metadatos del PDF, importante para los gestores de bibliografía como zotero o endnote o Mendeley cuando indexen tu tesis, 
+\usepackage[xetex,
+            pdfauthor={Autor},
+            pdftitle={Título},
+            pdfsubject={de que se trata la tesis},
+            pdfkeywords={palabras clave},
+            pdfproducer={xelatex con texlive},
+            pdfcreator={}xelatex,unicode,hyperfootnotes=false]{hyperref}
+
+
+
+%% para que las url no se salgan del margen
+\PassOptionsToPackage{hyphens}{url}
+
+
+%%%% citas con comitas %% esto no funciona muy bien tengo q trabajar en ello
+
+%%%%\usepackage[multiple]{footmisc}
+
+
+%% para LyX
+\providecommand{\tabularnewline}{\\}
+%%%%%
+
+%% para voltear paginas
+\usepackage{lscape}
+
+
+
+%% insertar archivos pdf en tu documento, es útil para los anexos
+\usepackage{pdfpages}
+
+
+%%% para que diga Anexos en Lugar de Apéndices
+\renewcommand{\appendixtocname}{Anexos}
+\renewcommand{\appendixpagename}{Anexos} %%% para la separación
+\renewcommand*{\cftappendixname}{Anexo\space}
+
+
+
+\widowpenalty=0
+\clubpenalty=0
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Citas!!!, estas citas estpán definidas según el estilo Chicago, segun lo que requieren la mayoŕia de las facultades 
+%%%% de humanides y ciencias sociales. usa biblatex y un montón de pargámetros para que salgan como deben quedar.
+
+
+%%%, ésta es la página, todo lo de abajo hace q los ibidems en las citas, no se generen si es la primera cita en la página, http://tex.%%%stackexchange.com/questions/58009/biblatex-tricks-with-repeated-citations-in-footnotes
+\usepackage[autocite=footnote,natbib=true,style=verbose-trad2,backend=bibtex8,isbn=false,dashed=false,maxcitenames=2,ibidem=idem,idemtracker=false,style=verbose-trad2,ibidpage=true]{biblatex}
+\renewbibmacro*{cite}{%
+  \usebibmacro{cite:citepages}%
+  \global\togglefalse{cbx:fullcite}%
+  \global\togglefalse{cbx:loccit}%
+  \bibhypertarget{cite\the\value{instcount}}{%
+    \ifciteseen
+      {\iffieldundef{shorthand}
+        {\iffirstonpage% NEW
+           {\usebibmacro{cite:name}% NEW
+            \usebibmacro{cite:title}}% NEW
+           {\ifciteibid
+              {\usebibmacro{cite:ibid}}
+              {\ifthenelse{\ifciteidem\AND\NOT\boolean{cbx:noidem}}
+                 {\usebibmacro{cite:idem}}
+                 {\usebibmacro{cite:name}}%
+               \usebibmacro{cite:title}}%
+%       \usebibmacro{cite:save}}% DELETED
+        \usebibmacro{cite:save}}}% NEW
+         {\usebibmacro{cite:shorthand}}}
+      {\usebibmacro{cite:full}%
+       \usebibmacro{cite:save}}}}
+
+\usepackage {csquotes}
+
+%% pon aqui tu archivo .bib. Para generar archivos .bib faciles te sugiero checar zotero. un gestor muy completo de bibilografía, uno mas sencillo es jabref
+\addbibresource{miscitas.bib}
+
+\bibliography{biblatex_style_guide}
+
+
+% para que se ponga en cursivas Ibidem. Idem y demás locuciones latinas
+
+\renewcommand*{\mkibid}{\emph}
+
+
+\pagestyle{memoirStylePages}
+
+%%% define un nuevo entorno donde no se va al texto a la siguiente página. Puede ser útil para la edición final
+
+\newenvironment{absolutelynopagebreak}
+  {\par\nobreak\vfil\penalty0\vfilneg
+   \vtop\bgroup}
+  {\par\xdef\tpd{\the\prevdepth}\egroup
+   \prevdepth=\tpd}
+
+
+%% otro paquete para poner referencias cruzadas
+\usepackage{cleveref}
+
+%% reajustar tablas y cosas q se salgan de los margenes
+\usepackage{adjustbox}
+
+
+
+% Para las letras capitales iniciales, se pueden poner al principio de cada capítulo por ejemplo.
+\usepackage{type1cm}
+\usepackage{lettrine}
+%%% para que la siguiente letra no se ponga en mayúscula pequeña, eso es opcional
+\renewcommand{\LettrineTextFont}{\rmfamily}
+
+
+\begin{document}
+
+
+%%% aquí se eescriben todas las cosas del principio como indices, portada, agradecimientos, aparecerán en el índice con números romanos
+\frontmatter
+
+%% la portada de tesis de la UNAM
+%% faltan por subir los escudos
+\newgeometry{verbose,tmargin=1.5cm,bmargin=0cm,lmargin=0cm,rmargin=0cm}
+\thispagestyle{empty}
+
+
+%% Barra izquierda - Escudos
+\begin{center}
+\hskip-1.5cm
+\begin{minipage}[c][10cm][s]{3cm} 
+  \begin{center}
+    \includegraphics[height=2.6cm]{escudo-unam}\\[10pt]
+    \hskip2pt\vrule width2pt height13cm \hskip1mm
+    \vrule width1pt height13cm\\[10pt]
+    \includegraphics[height=2.6cm] {fcpys}
+  \end{center}
+
+\end{minipage}\quad 
+%% Barra derecha - Ti­tulos
+\begin{minipage}[c][9.5cm][s]{10cm}
+  \begin{center}
+    % Barra superior
+    {\large \scshape Universidad Nacional Autónoma de México}
+    \vspace{.3cm}
+    \hrule height2pt
+    \vspace{.1cm}
+    \hrule height1pt
+    \vspace{.3cm}
+    {\scshape Facultad de Ciencias Políticas y Sociales}
+
+    % Titulo del trabajo
+    \vspace{3cm}
+
+    {\Large \ El nombre de tu tesis }
+
+    \vspace{3cm}
+
+    % Tipo de trabajo
+    \makebox[8cm][s]{\Huge T E S I S}\\[8pt]
+    QUE PARA OBTENER EL T\'ITULO DE:\\[3pt]
+    \ Licenciado en tu carrera \\[3pt]
+    PRESENTA:\\[3pt]
+    \ Autor
+
+    \vspace{2cm}
+
+ { DIRECTOR DE TESIS:\\ \ tu asesor }
+    \vspace{2cm}
+
+    \ Fecha 
+   
+  \end{center}
+\end{minipage}\quad
+
+\end{center}
+
+
+
+\restoregeometry
+
+%% una página en blanco
+   \mbox{}
+\thispagestyle{empty}
+\newpage
+
+\title{el título}
+\author{el autor}
+
+
+%% puedes descomentar esto si quieres que aparezcan en un paǵina aparte el título y autor pero como está definido arriba no es recomendable
+%\maketitle
+%%\clearpage
+
+
+%% el índice
+\tableofcontents{}
+\newpage
+
+%% la lista de cuadros
+
+\listoftables{}
+\newpage
+
+%% la lista de cuadros
+\listoffigures{}
+
+
+\chapter*{primer capítulo}}
+
+
+%% bibliografía
+\printbibliography
+
+%% nueva numeración para los anexos, A1, A2, etc
+\pagenumbering{arabic} %% regresa a 1 la cuenta
+\renewcommand*{\thepage}{A\arabic{page}} %% pone A antes de los números
+
+
+%%% aquí van los anexos
+\begin{appendices}
+%%% que diga anexos en lugar de apéndices
+\renewcommand{\appendixname}{Anexo}
+%\addappheadtotoc
+\appendixpage
+
+\end{appendices}
+
+%% cosas de atras, generalmente no son necesarias en la tesis.
+\backmatter
+
+\end{document}
+
